@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= title %></title>
+    <style>
+      #root {
+        font-size: 36px;
+        color: red;
+      }
+    </style>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"><%- data %></div>
+    <script>
+      'use strict';
+
+      var Home = function Home(props) {
+        var _props$count = props.count,
+          count = _props$count === void 0 ? 1 : _props$count;
+        return /*#__PURE__*/ React.createElement('div', null, 'this is build by react ssr, count is ', count);
+      };
+
+      setTimeout(() => {
+        ReactDOM.hydrate(/*#__PURE__*/ React.createElement(Home, null), document.getElementById('root'));
+      }, 500);
+    </script>
+  </body>
+</html>
