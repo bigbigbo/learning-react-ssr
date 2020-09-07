@@ -1,9 +1,8 @@
 const path = require('path');
 const fs = require('fs');
-console.log('fs', fs);
 
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath) => path.resolve(appDirectory, './part3', relativePath);
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 const paths = {
   appHtml: resolveApp('webpack/index.html'),

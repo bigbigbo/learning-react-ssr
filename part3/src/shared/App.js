@@ -39,4 +39,13 @@ const renderRoutes = (routes) => {
   );
 };
 
-export default renderRoutes(routes);
+const App = () => {
+  return (
+    <Switch>
+      {routes.map((item) => {
+        return <Route key={item.path} path={item.path} exact sensitive component={item.component} />;
+      })}
+    </Switch>
+  );
+};
+export default App;

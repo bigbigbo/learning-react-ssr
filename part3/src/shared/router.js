@@ -2,7 +2,12 @@ import HomePage from './pages/home';
 import AboutPage from './pages/about';
 
 const routes = [
-  { path: '/', redirect: '/home' },
+  {
+    path: '/',
+    icon: 'home',
+    name: '首页',
+    component: HomePage,
+  },
   {
     path: '/home',
     icon: 'home',
