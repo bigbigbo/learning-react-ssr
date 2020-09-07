@@ -15,7 +15,7 @@ const HTML = ({ children, css = [], scripts = [], helmetContext: { helmet } }) =
       ))}
     </head>
     <body>
-      <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
+      <div id="root" dangerouslySetInnerHTML={{ __html: children }} />
       {scripts.filter(Boolean).map((src) => (
         <script key={src} src={src} />
       ))}

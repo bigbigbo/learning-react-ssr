@@ -9,15 +9,9 @@
     "part2": "babel part2/index.js --out-file part2/index.bundle.js && node part2/index.bundle.js"
   },
   "dependencies": {
-    "body-parser": "1.19.0",
-    "chalk": "4.1.0",
-    "cors": "2.8.5",
     "ejs": "3.1.5",
-    "express": "4.17.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-helmet-async": "1.0.6",
-    "react-router-dom": "5.2.0"
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
     "@babel/cli": "7.11.6",
@@ -27,8 +21,6 @@
     "babel-eslint": "10.1.0",
     "eslint": "7.8.1",
     "eslint-config-alloy": "3.8.0",
-    "eslint-plugin-react": "7.20.6",
-    "webpack": "4.44.1",
-    "webpack-cli": "3.3.12"
+    "eslint-plugin-react": "7.20.6"
   }
 }
