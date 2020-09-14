@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About = (props) => {
-  const { count } = props;
-
-  return <div>this is build by react ssr, count is {count}</div>;
+  return (
+    <div>
+      <h1>About Page</h1>
+      <p>this is build by react ssr</p>
+      <Link to="/">回到首页</Link>
+    </div>
+  );
 };
 
 export default About;

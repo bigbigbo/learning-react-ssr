@@ -1,35 +1,22 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
 import App from '../../shared/App';
-import Html from '../components/HTML';
 
-const helmetContext = {};
 const routerContext = {};
 
 const reactSSR = () => (req, res) => {
-  console.log('req', res.locals);
   const content = renderToString(
-    <Router location={req.url}>
-      <HelmetProvider context={helmetContext}>
-        <App />
-      </HelmetProvider>
+    <Router location={req.url} context={routerContext}>
+      <App />
     </Router>
   );
 
-  return res.send(
-    '<!doctype html>' +
-      renderToString(
-        <Html
-          helmetContext={helmetContext}
-          // css={[res.locals.assetPath('bundle.css'), res.locals.assetPath('vendor.css')]}
-          // scripts={[res.locals.assetPath('bundle.js'), res.locals.assetPath('vendor.js')]}
-        >
-          {content}
-        </Html>
-      )
-  );
+  if (routerContext.notFound) {
+    res.status(404);
+  }
+
+  return res.send('<!doctype html>' + content);
 };
 
 export default reactSSR;

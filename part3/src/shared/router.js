@@ -9,13 +9,7 @@ const routes = [
     component: HomePage,
   },
   {
-    path: '/home',
-    icon: 'home',
-    name: '首页',
-    component: HomePage,
-  },
-  {
-    path: '/demo',
+    path: '/about',
     icon: 'appstore',
     name: '关于',
     component: AboutPage,

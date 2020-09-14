@@ -2,8 +2,6 @@ import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import chalk from 'chalk';
-import manifestHelpers from 'express-manifest-helpers';
-import bodyParser from 'body-parser';
 import reactSSR from './middlewares/reactSSR';
 import paths from '../../webpack/paths';
 const app = express();
@@ -11,17 +9,6 @@ const app = express();
 app.use(paths.publicPath, express.static(path.join(paths.clientBuild, paths.publicPath)));
 
 app.use(cors());
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// const manifestPath = path.join(paths.clientBuild, paths.publicPath);
-
-// app.use(
-//   manifestHelpers({
-//     manifestPath: `${manifestPath}/manifest.json`,
-//   })
-// );
 
 app.use(reactSSR());
 
