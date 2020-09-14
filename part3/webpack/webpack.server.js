@@ -1,4 +1,5 @@
 const paths = require('./paths');
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
@@ -13,6 +14,12 @@ module.exports = {
     publicPath: paths.publicPath,
   },
   externals: [nodeExternals()],
+  plugins: [
+    new webpack.DefinePlugin({
+      __SERVER__: 'true',
+      __BROWSER__: 'false',
+    }),
+  ],
   module: {
     rules: [
       {
