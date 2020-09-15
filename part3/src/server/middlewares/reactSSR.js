@@ -6,9 +6,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import App from '../../shared/App';
 import mainfest from '../../../build/client/manifest.json';
 import Html from '../components/HTML';
+import routes from '../../shared/router';
 
 const initialChunks = ['runtime', 'main'];
-const routerContext = {};
+const routerContext = { initialData: {} };
 const helmetContext = {};
 
 const jsAssets = initialChunks
@@ -18,7 +19,14 @@ const cssAssets = initialChunks
   .filter((chunkName) => mainfest[chunkName + '.css'])
   .map((chunkName) => ({ name: chunkName, path: mainfest[chunkName + '.css'] }));
 
-const reactSSR = () => (req, res) => {
+const reactSSR = () => async (req, res) => {
+  const target = routes.find((i) => i.path === req.url);
+
+  if (target.component.getInitialProps) {
+    const initialData = await target.component.getInitialProps({ req, res });
+    routerContext.initialData = initialData;
+  }
+
   const content = renderToString(
     <Router location={req.url} context={routerContext}>
       <HelmetProvider context={helmetContext}>
@@ -29,16 +37,18 @@ const reactSSR = () => (req, res) => {
 
   if (routerContext.notFound) {
     res.status(404);
-    // NOTE: 重置标志位
     routerContext.notFound = false;
   }
-
-  const initialState = { name: 'react ssr' };
 
   return res.send(
     '<!doctype html>' +
       renderToString(
-        <Html jsAssets={jsAssets} cssAssets={cssAssets} state={initialState} helmetContext={helmetContext}>
+        <Html
+          jsAssets={jsAssets}
+          cssAssets={cssAssets}
+          initialData={routerContext.initialData}
+          helmetContext={helmetContext}
+        >
           {content}
         </Html>
       )

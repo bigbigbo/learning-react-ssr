@@ -1,9 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import withSSR from '../../components/withSSR';
 
 const Home = (props) => {
-  const { count = 1 } = props;
+  const { count = 1, data = [] } = props;
 
   return (
     <div>
@@ -14,6 +15,9 @@ const Home = (props) => {
       </Helmet>
       home page, count is {count} <br />
       <button onClick={() => console.log('click')}>按钮</button>
+      {data.map((item, key) => (
+        <p key={key}>{item}</p>
+      ))}
       <Link to="/about">关于页</Link>
     </div>
   );
@@ -31,4 +35,4 @@ Home.getInitialProps = async () => {
   };
 };
 
-export default Home;
+export default withSSR(Home);

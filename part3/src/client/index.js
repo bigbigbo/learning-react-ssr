@@ -7,6 +7,9 @@ import App from '../shared/App';
 
 const history = createHistory();
 
+let initialData = JSON.parse(document.getElementById('initialData').value.replace(/\\n/g, ''));
+window.__INITIAL_DATA__ = initialData || {};
+
 ReactDOM.hydrate(
   <Router history={history}>
     <HelmetProvider>
