@@ -1,13 +1,13 @@
 const paths = require('./paths');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   target: 'web',
   entry: {
-    index: paths.clientEntry,
+    main: paths.clientEntry,
   },
   output: {
     path: paths.clientBuild,
@@ -16,18 +16,12 @@ module.exports = {
     chunkFilename: '[name].[chunkhash:8].chunk.js',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: paths.appHtml,
-      inject: true,
-    }),
-    new ScriptExtHtmlWebpackPlugin({
-      inline: /runtime\..*\.js$/,
-    }),
     new webpack.DefinePlugin({
       __SERVER__: 'false',
-      __BROWSER__: 'true',
+      __CLIENT__: 'true',
     }),
+    new ManifestPlugin(),
+    new CleanWebpackPlugin(),
   ],
   module: {
     rules: [

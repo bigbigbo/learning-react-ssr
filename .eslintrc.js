@@ -5,7 +5,7 @@ module.exports = {
     node: true,
   },
   globals: {
-    __BROWSER__: true,
+    __CLIENT__: true,
   },
   rules: {},
 };

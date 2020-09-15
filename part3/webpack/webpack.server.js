@@ -1,5 +1,6 @@
 const paths = require('./paths');
 const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
@@ -17,8 +18,9 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __SERVER__: 'true',
-      __BROWSER__: 'false',
+      __CLIENT__: 'false',
     }),
+    new CleanWebpackPlugin(),
   ],
   module: {
     rules: [
