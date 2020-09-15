@@ -1,3 +1,4 @@
 node_modules
 dist
 yarn.lock
+part3/build

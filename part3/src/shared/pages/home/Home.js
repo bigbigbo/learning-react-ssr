@@ -19,4 +19,16 @@ const Home = (props) => {
   );
 };
 
+const sleep = (t) =>
+  new Promise((r) => {
+    setTimeout(r, t);
+  });
+
+Home.getInitialProps = async () => {
+  await sleep(1000);
+  return {
+    data: ['测试数据1', '测试数据2', '测试数据3'],
+  };
+};
+
 export default Home;
