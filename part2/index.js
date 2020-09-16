@@ -1,13 +1,20 @@
 const path = require('path');
 const http = require('http');
 const ejs = require('ejs');
+const chalk = require('chalk');
 
 const React = require('react');
 const { renderToString } = require('react-dom/server');
 
 const Home = (props) => {
   const { count = 1 } = props;
-  return <div>this is build by react ssr, count is {count}</div>;
+  return (
+    <div>
+      this is build by react ssr, count is {count};
+      <br />
+      <button onClick={() => console.log('click')}>按钮</button>
+    </div>
+  );
 };
 
 const fetchData = () => {
@@ -46,3 +53,5 @@ http
     }
   })
   .listen(9981);
+
+console.log(`[${new Date().toISOString()}]`, chalk.blue(`App is running: http://localhost:9981`));

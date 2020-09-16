@@ -1,13 +1,10 @@
 import express from 'express';
-import cors from 'cors';
 import chalk from 'chalk';
 import reactSSR from './middlewares/reactSSR';
 import paths from '../../webpack/paths';
 const app = express();
 
 app.use('/static', express.static(paths.clientBuild));
-
-app.use(cors());
 
 app.use(reactSSR());
 

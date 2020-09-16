@@ -22,11 +22,27 @@
       var Home = function Home(props) {
         var _props$count = props.count,
           count = _props$count === void 0 ? 1 : _props$count;
-        return /*#__PURE__*/ React.createElement('div', null, 'this is build by react ssr, count is ', count);
+        return /*#__PURE__*/ React.createElement(
+          'div',
+          null,
+          'this is build by react ssr, count is ',
+          count,
+          ';',
+          /*#__PURE__*/ React.createElement('br', null),
+          /*#__PURE__*/ React.createElement(
+            'button',
+            {
+              onClick: function onClick() {
+                return console.log('click');
+              },
+            },
+            '\u6309\u94AE'
+          )
+        );
       };
 
       setTimeout(() => {
-        ReactDOM.hydrate(/*#__PURE__*/ React.createElement(Home, null), document.getElementById('root'));
+        ReactDOM.render(/*#__PURE__*/ React.createElement(Home, null), document.getElementById('root'));
       }, 500);
     </script>
   </body>

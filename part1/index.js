@@ -1,6 +1,7 @@
 const path = require('path');
 const ejs = require('ejs');
 const http = require('http');
+const chalk = require('chalk');
 
 http
   .createServer((req, res) => {
@@ -8,7 +9,7 @@ http
       res.writeHead(200, {
         'Content-Type': 'text/html',
       });
-      // 渲染文件 index.ejs
+
       ejs.renderFile(
         path.resolve(__dirname, './index.ejs'),
         {
@@ -26,3 +27,5 @@ http
     }
   })
   .listen(9981);
+
+console.log(`[${new Date().toISOString()}]`, chalk.blue(`App is running: http://localhost:9981`));
